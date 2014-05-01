@@ -1,0 +1,56 @@
+f2fs-backport
+==============
+
+The Flash-Friendly File System(f2fs) initially backported to Linux 3.0 by Now Computing, now maintained by arter97.
+
+This repository is based on linux-3.0.y branch, which is the latest Linux 3.0.101.
+
+This repository contains the latest f2fs from the official mainline git repository:
+git://git.kernel.org/pub/scm/linux/kernel/git/jaegeuk/f2fs.git (branch dev)
+
+
+
+Branch
+======
+
+The "master" branch will always be force updated to show the required patches on the very top.
+Please use the "master" branch ONLY if you've imported f2fs to your source code yourself.
+It will be a bad idea to use "git merge" towards the "master" branch.
+
+The "merge" branch will NOT be force updated for making it suitable for "git merge".
+
+
+
+Commits
+=======
+
+The official mainline f2fs git repository is usually force updated,
+making us hard to cherry-pick each commits made by f2fs developers.
+
+So, instead of seeing the actual f2fs commits on this repository,
+you'll see "fs: rework f2fs" commits.
+
+This commit will always contain the latest f2fs, including its force updated changes.
+
+
+
+How-to
+======
+
+1. If you've already imported f2fs by yourself:
+   Go just cherry-pick the "f2fs: support 3.0".
+
+2. If you don't have f2fs on your 3.0 kernel:
+   Use git's automated merge to include the latest f2fs.
+
+   Use this command to add this repository to your local git:
+   $ git remote add f2fs-backport https://arter97@bitbucket.org/arter97/f2fs-backport.git
+
+   And repeat this command to apply & fetch the latest f2fs changes:
+   $ git fetch f2fs-backport
+   $ git merge f2fs-backport/merge
+
+   Please note that if your git repository is not upstreamed with Linux 3.0.101 using git merge,
+   you'll find yourself in trouble with lots of merge conflicts.
+   In this case, restructure your git upstreamed with Linux 3.0.101 using git merge,
+   or import f2fs yourself and follow the 1st instructions.
